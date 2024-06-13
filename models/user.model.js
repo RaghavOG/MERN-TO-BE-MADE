@@ -12,6 +12,17 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    // todo : make the changes in signup and login routes and controllers
+    gender: {
+			type: String,
+			// required: true,
+      default:"male"
+			// enum: ["male", "female"],
+		},
+    status: {
+      type: String,
+      default: 'Available',
+    },
     email: {
       type: String,
       required: true,

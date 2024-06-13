@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
 import dbConnect from './config/dbConnect.js';
 
 const app = express();
@@ -25,7 +26,8 @@ app.listen(PORT, () => {
     console.log(`Server is running on port http://127.0.0.1:${PORT}/`);
   });
 
-app.use('/api/v1/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
 
 
 

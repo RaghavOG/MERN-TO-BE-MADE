@@ -4,9 +4,10 @@ import { signup, signin, google } from '../controllers/auth.controller.js';
 const router = express.Router();
 
 
-router.post('/signup', signup);
-router.post('/signin', signin);
-router.post('/google', google)
+router.post('/signup', signup); //working
+router.post('/signin', signin); //working
+router.post('/google', google); //working
+
 
 
 export default router;

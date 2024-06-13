@@ -6,12 +6,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const signup = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { name , username, email, password } = req.body;
 
   if (
+    !name ||
     !username ||
     !email ||
     !password ||
+    name === '' ||
     username === '' ||
     email === '' ||
     password === ''
@@ -22,6 +24,7 @@ export const signup = async (req, res, next) => {
   const hashedPassword = bcryptjs.hashSync(password, 10);
 
   const newUser = new User({
+    name,
     username,
     email,
     password: hashedPassword,
@@ -51,7 +54,11 @@ export const signin = async (req, res, next) => {
     if (!validPassword) {
       return next(errorHandler(400, 'Invalid password'));
     }
-    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(
+      { id: validUser._id, isAdmin: validUser.isAdmin },
+      
+      process.env.JWT_SECRET
+    );
 
     const { password: pass, ...rest } = validUser._doc;
 
@@ -72,8 +79,8 @@ export const google = async (req, res, next) => {
     const user = await User.findOne({ email });
     if (user) {
       const token = jwt.sign(
-        // { id: user._id, isAdmin: user.isAdmin },
-        { id: user._id },
+        { id: user._id, isAdmin: user.isAdmin },
+        // { id: user._id },
         process.env.JWT_SECRET
       );
       const { password, ...rest } = user._doc;

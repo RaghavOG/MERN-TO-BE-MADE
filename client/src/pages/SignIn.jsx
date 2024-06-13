@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Button, TextInput } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link for navigation
 
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 
@@ -79,6 +79,12 @@ const SignIn = () => {
       </form>
       {signInError && <Alert color='failure' className='mt-5'>{signInError}</Alert>}
       {error && <Alert color='failure' className='mt-5'>{error}</Alert>}
+
+      {/* New user create account link */}
+      <div className="mt-3 text-center">
+        <span>Don't have an account?</span>{' '}
+        <Link to="/signup" className="text-purple-600 hover:underline">Create one now!</Link>
+      </div>
     </div>
   );
 };

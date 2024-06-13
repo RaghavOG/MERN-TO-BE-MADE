@@ -7,7 +7,7 @@ import {
   ref,
   uploadBytesResumable,
 } from 'firebase/storage';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link} from 'react-router-dom';
 
 import { app } from '../firebase';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -200,6 +200,11 @@ export default function SignIn() {
       {signInError && <Alert color='failure' className='mt-5'>{signInError}</Alert>}
       {error && <Alert color='failure' className='mt-5'>{error}</Alert>}
       {showSuccessAlert && <Alert color='success' className='mt-5'>Signup successful! Redirecting to sign-in page...</Alert>}
+
+      <div className="mt-3 text-center">
+        <span>Already Have a Account ?</span>{' '}
+        <Link to="/signin" className="text-purple-600 hover:underline">Login Here!</Link>
+      </div>
     </div>
   );
 }

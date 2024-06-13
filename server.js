@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
 import dbConnect from './config/dbConnect.js';
+import messageRoutes from './routes/message.routes.js';
 import path from 'path';
 import http from 'http';
 
@@ -67,6 +68,7 @@ export const getReceiverSocketId = (receiverId) => {
 // API routes
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use("/api/messages", messageRoutes);
 
 
 // Serve the frontend

@@ -10,6 +10,19 @@ const userSlice = createSlice({ // createSlice() function takes an object as an 
   name: 'user',  // name of the slice
   initialState,  // initial state is an object with currentUser, error, and loading properties
   reducers: { // reducers object contains all the reducer functions
+    signUpStart: (state) => { // signInStart is when the sign-in process starts
+      state.loading = true;
+      state.error = null;
+    },
+    signUpSuccess: (state, action) => {    // signInSuccess is when the sign-in process is successful
+      state.currentUser = action.payload;
+      state.loading = false;
+      state.error = null;
+    },
+    signUpFailure: (state, action) => {   // signInFailure is when the sign-in process fails
+      state.loading = false;
+      state.error = action.payload;
+    },
     signInStart: (state) => { // signInStart is when the sign-in process starts
       state.loading = true;
       state.error = null;
@@ -61,6 +74,9 @@ export const {
   signInStart,
   signInSuccess,
   signInFailure,
+  signUpStart,
+  signUpSuccess,
+  signUpFailure,
   updateStart,
   updateSuccess,
   updateFailure,

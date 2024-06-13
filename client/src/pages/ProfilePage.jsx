@@ -239,6 +239,13 @@ export default function ProfilePage() {
           onChange={handleChange}
         />
         <TextInput
+          type='text'
+          id='status'
+          placeholder='Status'
+          defaultValue={currentUser.status}  // Show default status
+          onChange={handleChange}
+        />
+        <TextInput
           type='password'
           id='password'
           placeholder='password'

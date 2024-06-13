@@ -1,4 +1,4 @@
-import { Alert, Button, TextInput } from 'flowbite-react';
+import { Alert, Button, TextInput , Select } from 'flowbite-react';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -188,6 +188,17 @@ export default function SignIn() {
           value={formData.password || ''}
           onChange={handleChange}
         />
+        <Select
+          id='gender'
+          value={formData.gender}
+          onChange={handleChange}
+          required
+        >
+          <option value=''>Select Gender</option>
+          <option value='male'>Male</option>
+          <option value='female'>Female</option>
+        </Select>
+        
         <Button
           type='submit'
           gradientDuoTone='purpleToBlue'

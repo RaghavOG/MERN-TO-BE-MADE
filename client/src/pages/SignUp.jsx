@@ -59,7 +59,7 @@ export default function SignIn() {
         setImageFileUploadError('Could not upload image (File must be less than 2MB)');
         setImageFileUploadProgress(null);
         setImageFile(null);
-        setImageFileUrl("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
+        setImageFileUrl("");
         setImageFileUploading(false);
       },
       () => {

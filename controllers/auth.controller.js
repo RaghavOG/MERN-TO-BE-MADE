@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const signup = async (req, res, next) => {
-  const { name , username, email, password } = req.body;
+  const { name , username, email, password , gender , profilePicture} = req.body;
 
   if (
     !name ||
@@ -23,11 +23,23 @@ export const signup = async (req, res, next) => {
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
 
+  const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
+	const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+
+  const profilePic = profilePicture && profilePicture !== ''
+  ? profilePicture
+  : gender === 'male'
+    ? boyProfilePic
+    : girlProfilePic;
+
   const newUser = new User({
     name,
     username,
     email,
+    gender,
     password: hashedPassword,
+    profilePicture : profilePic,
+
   });
 
   try {
